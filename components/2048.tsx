@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import next, { NextPage } from "next";
 import Panel from "./Panel";
+import { useSwipeable } from "react-swipeable";
 
 const board = css`
   position: relative;
@@ -368,6 +369,28 @@ const Game2048: React.FC = () => {
       fontNum,
     ]
   );
+  const handlers = useSwipeable({
+    onSwipedLeft: (eventData) => {
+      moveLeft();
+      addLeft();
+      generateNewPanel();
+    },
+    onSwipedUp: (eventData) => {
+      moveUp();
+      addUp();
+      generateNewPanel();
+    },
+    onSwipedRight: (eventData) => {
+      moveRight();
+      addRight();
+      generateNewPanel();
+    },
+    onSwipedDown: (eventData) => {
+      moveDown();
+      addDown();
+      generateNewPanel();
+    },
+  });
 
   useEffect(() => {
     document.addEventListener("keydown", pushArrFunction, false);
@@ -403,7 +426,7 @@ const Game2048: React.FC = () => {
         <span>hiscore: {hiScore}</span>
         <span>score: {score}</span>
       </div>
-      <div css={board}>
+      <div css={board} {...handlers}>
         {continueGame(panelNums) === false ? (
           <div css={gameOver}>GameOver</div>
         ) : null}
