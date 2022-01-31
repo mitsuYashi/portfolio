@@ -16,7 +16,8 @@
     "@swc/core": "^1.2.133",
     "next": "12.0.8",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-swipeable": "^6.2.0"
   },
   "devDependencies": {
     "@types/node": "17.0.10",
